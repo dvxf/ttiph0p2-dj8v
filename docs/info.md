@@ -22,6 +22,7 @@ Thanks to its external parallel bus, it could be connected to parallel flash or 
 Sample assembly code could be found in [test bench](../test/test.py) and [demo ROM](../src/project.v).
 
 Previous implementations:
+
 - [TT07 DJ8 8-bit CPU w/ DAC - Verilog, Mixed-signal, 8-bit DAC](https://github.com/dvxf/tt07-dj8v-dac)
 - [TT06 DJ8 8-bit CPU - VHDL](https://github.com/dvxf/tt06-dj8)
 
