@@ -161,3 +161,25 @@ async def test_dj8(dut):
         dut.clk.value = 0
         await Timer(10,"us")
 
+    # Phase 3: Test with internal ROM - Bytebeat Synthetizer
+
+    # reset
+    dut._log.info("reset")
+    dut.rst_n.value = 0
+    await Timer(100,"us")
+    dut.ui_in.value = 0x60     # DIP = 01100000
+    dut.rst_n.value = 1
+    await Timer(100,"us")
+
+    for cycle in range(8000):  
+        dut.clk.value = 1
+        await Timer(35,"ns")   # ~14MHz
+        debug_memory_synth(dut)
+        dut.clk.value = 0
+        await Timer(35,"ns")
+        debug_memory_synth(dut)
+
+    dut._log.info("%d bytebeat samples generated" % len(synth_data))
+    dut._log.info(str(synth_data))
+
+    assert synth_data == [0,0,1,1,2]
